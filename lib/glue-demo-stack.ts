@@ -12,19 +12,19 @@ export class GlueDemoStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: envconfigs) {
     super(scope, id, props?.accountDetails);
 
-    const sourceBucket = new s3.Bucket(this, `${props?.resources.environment}-${props?.resources.sourceBucketId}`, {
-      bucketName: `${props?.resources.environment}-${props?.resources.sourceBucketName}`,
+    const sourceBucket = new s3.Bucket(this, "SourceBucket", {
+      bucketName: "source-bucket-552",
       removalPolicy: cdk.RemovalPolicy.DESTROY
     });
 
-    const destinationBucket = new s3.Bucket(this, `${props?.resources.environment}-${props?.resources.destinationBucketId}`, {
-      bucketName: `${props?.resources.environment}-${props?.resources.destinationBucketName}`,
+    const destinationBucket = new s3.Bucket(this,"destinationBucket", {
+      bucketName: "destination-bucket-552",
       removalPolicy: cdk.RemovalPolicy.DESTROY
     });
 
-    const lambdaRole = new iam.Role(this, `${props?.resources.environment}-${props?.resources.lambdaRoleId}`, {
+    const lambdaRole = new iam.Role(this, "lambda-role", {
       assumedBy: new iam.ServicePrincipal("lambda.amazonaws.com"),
-      roleName: `${props?.resources.environment}-${props?.resources.lambdaFunctionName}`
+      roleName: "grant-glue-access"
     });
 
     lambdaRole.addToPolicy(new iam.PolicyStatement({
@@ -32,21 +32,21 @@ export class GlueDemoStack extends cdk.Stack {
       resources: ["*"],
     }));
 
-    const lambdaTrigger = new lambda.Function(this, `${props?.resources.environment}-${props?.resources.lambdaFunctionId}`, {
-      functionName: `${props?.resources.environment}-${props?.resources.lambdaFunctionName}`,
+    const lambdaTrigger = new lambda.Function(this, "trigger-lambda",{
+      functionName: "trigger-gluejob",
       runtime: lambda.Runtime.PYTHON_3_7,
       code: lambda.Code.fromAsset('lambda'),
       handler: "index.handler",
       role: lambdaRole,
       environment:{
-        glueJobname: `${props?.resources.environment}-${props?.resources.glueJobName}`,
+        glueJobname: "Push-to-destination",
     }
     });
     sourceBucket.addEventNotification(s3.EventType.OBJECT_CREATED, new s3n.LambdaDestination(lambdaTrigger));
 
-    const glueRole = new iam.Role(this, `${props?.resources.environment}-${props?.resources.glueJobRoleid}`, {
+    const glueRole = new iam.Role(this, "glueJobRole", {
       assumedBy: new iam.ServicePrincipal("glue.amazonaws.com"),
-      roleName: `${props?.resources.environment}-${props?.resources.glueJobRole}`
+      roleName:"push-to-destination",
     });
     
     glueRole.addToPolicy(new iam.PolicyStatement({
@@ -64,12 +64,12 @@ export class GlueDemoStack extends cdk.Stack {
       resources: ["*"],
     }));
 
-    const glueJob = new glue.CfnJob(this, `${props?.resources.environment}-${props?.resources.glueJobId}`, {
-      name: `${props?.resources.environment}-${props?.resources.glueJobName}`,
+    const glueJob = new glue.CfnJob(this, "GlueJob", {
+      name: "Push-to-destination",
       command: {
         name: 'glueetl',
         pythonVersion: '3',
-        scriptLocation: `${props?.resources.environment}-${props?.resources.etlScriptLocation}`,
+        scriptLocation: "s3://etl-scripts-552/glue-etl.py",
       },
       role: glueRole.roleArn,
       executionProperty: {

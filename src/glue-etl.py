@@ -3,8 +3,8 @@ import boto3
 import os
 # Get job parameters
 args = {
-    'source_bucket': "dev-source-bucket-552",
-    'destination_bucket': 'dev-destination-bucket-552',
+    'source_bucket': 'source-bucket-552',
+    'destination_bucket': 'destination-bucket-552',
 }
 
 # Source and destination S3 bucket names
