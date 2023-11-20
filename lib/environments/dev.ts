@@ -21,6 +21,8 @@ resources:{
     glueJobRoleid:"glueJobRole",
     glueJobName:"Push-to-destination",
     glueJobId:"GlueJob",   
-    etlScriptLocation:"s3://etl-scripts-552/glue-etl.py",
+    etlScriptLocation:"s3://dev-etl-scripts-552/glue-etl.py",
+    eltlScriptBucketId:"ETLscriptBcucket",
+    eltlScriptBucketName:"etl-scripts-552",
 }
 }

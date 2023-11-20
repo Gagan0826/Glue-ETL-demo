@@ -69,7 +69,7 @@ export class GlueDemoStack extends cdk.Stack {
       command: {
         name: 'glueetl',
         pythonVersion: '3',
-        scriptLocation: `${props?.resources.environment}-${props?.resources.etlScriptLocation}`,
+        scriptLocation: `${props?.resources.etlScriptLocation}`,
       },
       role: glueRole.roleArn,
       executionProperty: {
@@ -80,9 +80,9 @@ export class GlueDemoStack extends cdk.Stack {
       maxRetries: 0, 
     });
 
-    const scriptBucket = new s3.Bucket(this, 'ETLscriptBucket', {
+    const scriptBucket = new s3.Bucket(this, `${props?.resources.environment}-${props?.resources.eltlScriptBucketId}`, {
       removalPolicy: cdk.RemovalPolicy.DESTROY, 
-      bucketName:"etl-scripts-552"
+      bucketName:`${props?.resources.environment}-${props?.resources.eltlScriptBucketName}`
     });
     new s3deploy.BucketDeployment(this, 'DeployFiles', {
       sources: [s3deploy.Source.asset('./src/')],

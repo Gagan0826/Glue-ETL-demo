@@ -5,7 +5,7 @@ export const prodenv:envconfigs={
             account:"663839140840",
             region:"ap-south-1"
     }, 
-    stackName:"prod-configs"
+    stackName:"Glue-ETL-demo-prod"
 },
 resources:{
     environment:"prod",
@@ -21,6 +21,8 @@ resources:{
     glueJobRoleid:"glueJobRole",
     glueJobName:"Push-to-destination",
     glueJobId:"GlueJob",   
-    etlScriptLocation:"s3://etl-scripts-552/glue-etl.py",
+    etlScriptLocation:"s3://prod-etl-scripts-552/glue-etl.py",
+    eltlScriptBucketId:"ETLscriptBcucket",
+    eltlScriptBucketName:"etl-scripts-552",
 }
 }

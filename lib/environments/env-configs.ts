@@ -20,4 +20,6 @@ glueJobRoleid:string,
 glueJobName:string,
 glueJobId:string,
 etlScriptLocation:string,
+eltlScriptBucketId:string,
+eltlScriptBucketName:string,
 }
