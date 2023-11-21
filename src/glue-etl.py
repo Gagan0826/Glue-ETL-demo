@@ -1,11 +1,13 @@
 import sys
 import boto3
 import os
-
-args = {
-    'source_bucket': "prod-source-bucket-552",
-    'destination_bucket': 'prod-destination-bucket-552',
-}
+import awsglue
+from awsglue.utils import getResolvedOptions
+args=getResolvedOptions(sys.argv,["source_bucket","destination_bucket"])
+# args = {
+#     'source_bucket': "prod-source-bucket-552",
+#     'destination_bucket': 'prod-destination-bucket-552',
+# }
 source_bucket = args['source_bucket']
 destination_bucket = args['destination_bucket']
 

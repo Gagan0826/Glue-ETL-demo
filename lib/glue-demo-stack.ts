@@ -39,6 +39,8 @@ export class GlueDemoStack extends cdk.Stack {
       handler: "index.handler",
       role: lambdaRole,
       environment:{
+        sourceBucketname: `${props?.resources.environment}-${props?.resources.sourceBucketName}`,
+        destinationBucketname: `${props?.resources.environment}-${props?.resources.destinationBucketName}`,
         glueJobname: `${props?.resources.environment}-${props?.resources.glueJobName}`,
     }
     });
