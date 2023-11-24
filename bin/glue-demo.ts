@@ -7,4 +7,4 @@ import { prodenv } from '../lib/environments/prod';
 
 const app = new cdk.App();
 new GlueDemoStack(app, 'dev-GlueDemoStack',devenv);
-new GlueDemoStack(app, 'prod-GlueDemoStack',prodenv);
+//new GlueDemoStack(app, 'prod-GlueDemoStack',prodenv);

@@ -2,7 +2,7 @@ import { envconfigs } from "./env-configs";
 export const devenv:envconfigs={
     accountDetails:{
         env:{
-            account:"663839140840",
+            account:"382663127776",
             region:"ap-south-1"
     }, 
     stackName:"Glue-ETL-demo-dev"

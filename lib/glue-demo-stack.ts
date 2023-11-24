@@ -31,6 +31,20 @@ export class GlueDemoStack extends cdk.Stack {
       actions: ['glue:StartJobRun'],
       resources: ["*"],
     }));
+     lambdaRole.addToPolicy(new iam.PolicyStatement({
+      actions: [
+        's3:GetObject',
+        's3:PutObject',
+        's3:ListBucket',
+        's3:DeleteObject',
+        'glue:StartJobRun',
+        'logs:CreateLogGroup',
+        'logs:CreateLogStream',
+        'logs:PutLogEvents'
+        
+      ],
+      resources: ["*"],
+    }));
 
     const lambdaTrigger = new lambda.Function(this, `${props?.resources.environment}-${props?.resources.lambdaFunctionId}`, {
       functionName: `${props?.resources.environment}-${props?.resources.lambdaFunctionName}`,
@@ -69,7 +83,7 @@ export class GlueDemoStack extends cdk.Stack {
     const glueJob = new glue.CfnJob(this, `${props?.resources.environment}-${props?.resources.glueJobId}`, {
       name: `${props?.resources.environment}-${props?.resources.glueJobName}`,
       command: {
-        name: 'glueetl',
+        name: 'pythonshell',
         pythonVersion: '3',
         scriptLocation: `${props?.resources.etlScriptLocation}`,
       },
@@ -77,7 +91,7 @@ export class GlueDemoStack extends cdk.Stack {
       executionProperty: {
         maxConcurrentRuns: 1000,
       },
-      glueVersion: "2.0",
+      glueVersion: "1.0",
       maxCapacity: 1,
       maxRetries: 0, 
     });
