@@ -7,20 +7,28 @@ export interface envconfigs {
 }
 
 interface ResourceVariables {
-    Environment: string;
-    SourceBucketName: string;
-    SourceBucketId: string;
-    DestinationBucketName: string;
-    DestinationBucketId: string;
-    LambdaRoleName: string;
-    LambdaRoleId: string;
-    LambdaFunctionName: string;
-    LambdaFunctionId: string;
-    GlueJobRole: string;
-    GlueJobRoleid: string;
-    GlueJobName: string;
-    GlueJobId: string;
+    environment: string;
+    sourceBucketName: string;
+    sourceBucketId: string;
+    destinationBucketName: string;
+    destinationBucketId: string;
+    lambdaRoleName: string;
+    lambdaRoleId: string;
+    lambdaFunctionName: string;
+    lambdaFunctionId: string;
+    glueJobRole: string;
+    glueJobRoleid: string;
+    glueJobName: string;
+    glueJobId: string;
     ETLScriptLocation: string;
     ETLScriptBucketId: string;
     ETLScriptBucketName: string;
+
+    firstLambdaId:string;
+    firstLambdaName:string;
+    secondLambdaId:string;
+    secondLambdaName:string;
+    subscriptionFilterId:string;
+    subscriptionFilterName:string;
+    searchMessage:string;
 }

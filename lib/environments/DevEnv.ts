@@ -1,6 +1,6 @@
 import { envconfigs } from "./EnvConfigurations";
 
-export const devenv: envconfigs = {
+export const devEnvironment: envconfigs = {
     accountDetails: {
         env: {
             account: "382663127776",
@@ -10,21 +10,29 @@ export const devenv: envconfigs = {
     },
 
     resources: {
-        Environment: "dev",
-        SourceBucketName: "source-bucket-552",
-        SourceBucketId: "sourceBucket",
-        DestinationBucketName: "destination-bucket-552",
-        DestinationBucketId: "destinationBucket",
-        LambdaRoleName: "grant-glue-access",
-        LambdaRoleId: "lambda-role",
-        LambdaFunctionName: "trigger-gluejob",
-        LambdaFunctionId: "trigger-lambda",
-        GlueJobRole: "GluejobRole",
-        GlueJobRoleid: "glueJobRole",
-        GlueJobName: "Push-to-destination",
-        GlueJobId: "Push-to-destination",
+        environment: "dev",
+        sourceBucketName: "source-bucket-552",
+        sourceBucketId: "sourceBucket",
+        destinationBucketName: "destination-bucket-552",
+        destinationBucketId: "destinationBucket",
+        lambdaRoleName: "grant-glue-access",
+        lambdaRoleId: "lambda-role",
+        lambdaFunctionName: "trigger-gluejob",
+        lambdaFunctionId: "trigger-lambda",
+        glueJobRole: "GluejobRole",
+        glueJobRoleid: "glueJobRole",
+        glueJobName: "Push-to-destination",
+        glueJobId: "Push-to-destination",
         ETLScriptLocation: "s3://dev-etl-scripts-552/PushFilesToDestination.py",
         ETLScriptBucketId: "ETLscriptBcucket",
         ETLScriptBucketName: "etl-scripts-552",
+
+        firstLambdaId:"lambda-generate-logs",
+        firstLambdaName:"lambda-1",
+        secondLambdaId:"triggered-lambda",
+        secondLambdaName:"lambda-2",
+        subscriptionFilterId:"subscription-filter",
+        subscriptionFilterName:"subFilter",
+        searchMessage:"success",
     }
 };
