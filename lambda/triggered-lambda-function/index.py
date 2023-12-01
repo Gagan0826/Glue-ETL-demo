@@ -13,8 +13,7 @@ def handler(event, context):
     for log in jsonData["logEvents"]:
         message=log["message"].strip("\\n")
         messages=messages+" "+message
-        messages.strip("\\n")
-    
+            
     print("The trigger message is :",messages)
     return {
         'statusCode': 200,

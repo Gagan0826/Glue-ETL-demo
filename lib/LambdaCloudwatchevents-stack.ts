@@ -4,11 +4,11 @@ import {aws_lambda as lambda,
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { Construct } from 'constructs';
 import { FilterPattern } from 'aws-cdk-lib/aws-logs';
-import { envconfigs } from './environments/EnvConfigurations';
+import { envConfigs } from './environments/EnvConfigurations';
 
 
 export class lambdaCloudwatchevents extends cdk.Stack {
-  constructor(scope: Construct, id: string, props: envconfigs) {
+  constructor(scope: Construct, id: string, props: envConfigs) {
     super(scope, id, props.accountDetails);
     const firstLambda= new lambda.Function(this,`${props.resources.environment}-${props.resources.firstLambdaId}`,{
       functionName:`${props.resources.environment}-${props.resources.firstLambdaName}`,
