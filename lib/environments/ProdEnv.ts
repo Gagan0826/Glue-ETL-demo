@@ -1,6 +1,6 @@
-import { envconfigs } from "./EnvConfigurations";
+import { envConfigs } from "./EnvConfigurations";
 
-export const prodEnvironment: envconfigs = {
+export const prodEnvironment: envConfigs = {
     accountDetails: {
         env: {
             account: "663839140840",

@@ -1,5 +1,5 @@
 import { Construct } from 'constructs';
-import { envconfigs } from './environments/EnvConfigurations';
+import { envConfigs } from './environments/EnvConfigurations';
 import * as cdk from 'aws-cdk-lib';
 import {
   aws_s3 as s3,
@@ -11,7 +11,7 @@ import {
 } from "aws-cdk-lib";
 
 export class glueJobAutomation extends cdk.Stack {
-  constructor(scope: Construct, id: string, props?: envconfigs) {
+  constructor(scope: Construct, id: string, props?: envConfigs) {
     super(scope, id, props?.accountDetails);
 
     const sourceBucket = new s3.Bucket(this, `${props?.resources.environment}-${props?.resources.sourceBucketId}`, {

@@ -1,7 +1,7 @@
 import { CdkCommand } from "aws-cdk-lib/cloud-assembly-schema";
 import * as cdk from "aws-cdk-lib";
 
-export interface envconfigs {
+export interface envConfigs {
     accountDetails: cdk.StackProps;
     resources: ResourceVariables;
 }
