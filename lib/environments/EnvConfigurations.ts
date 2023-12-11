@@ -31,4 +31,6 @@ interface ResourceVariables {
     subscriptionFilterId:string;
     subscriptionFilterName:string;
     searchMessage:string;
+
+    pyFiles:string;
 }

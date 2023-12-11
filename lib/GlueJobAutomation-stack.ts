@@ -74,14 +74,16 @@ export class glueJobAutomation extends cdk.Stack {
         name: 'pythonshell',
         pythonVersion: '3',
         scriptLocation: `${props?.resources.ETLScriptLocation}`,
-      },
+      },  
+      
       role: glueRole.roleArn,
       glueVersion: "1.0",
       executionProperty: {
         maxConcurrentRuns: 10,
      },
-
+     defaultArguments:{'--extra-py-files': `${props?.resources.pyFiles}`},
     });
+
 
     const scriptBucket = new s3.Bucket(this, `${props?.resources.environment}-${props?.resources.ETLScriptBucketId}`, {
       removalPolicy: cdk.RemovalPolicy.DESTROY,
