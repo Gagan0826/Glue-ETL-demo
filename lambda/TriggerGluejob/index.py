@@ -22,6 +22,7 @@ def handler(event, context):
             "--files": fileNamesJson,
             
     }
+    #start the glue job
     try:
         response = glue.start_job_run(JobName=glueJobName,Arguments=names)                                     
         print(response)
