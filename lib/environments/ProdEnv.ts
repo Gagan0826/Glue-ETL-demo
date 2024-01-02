@@ -34,7 +34,13 @@ export const prodEnvironment: envConfigs = {
         subscriptionFilterId:"subscription-filter",
         subscriptionFilterName:"subFilter",
         searchMessage:"success",
-
-        pyFiles:'s3://dev-etl-scripts-552/one.py,s3://dev-etl-scripts-552/two.py'
+        scriptBucketLocation:'s3://prod-etl-scripts-552/',
+        
+    },
+    scriptLocation:{
+        location:[
+            `s3://prod-etl-scripts-552/one.py`,
+            's3://prod-etl-scripts-552/two.py',
+            's3://prod-etl-scripts-552/three.py']
     }
 };
