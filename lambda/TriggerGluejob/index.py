@@ -6,30 +6,33 @@ glue = boto3.client('glue')
 s3 = boto3.client('s3')
 
 def handler(event, context):
-    glue_job_name = os.environ['glueJobname']
-    FileNames = []
+    glueJobName = os.environ['glueJobname']+"new"
+    fileNames = []
 
     for record in event["Records"]:
-        FileNames.append(record['s3']['object']['key'])
+        fileNames.append(record['s3']['object']['key'])
 
-    print(FileNames)
-    FilenamesJson = json.dumps(FileNames)
-    print(FilenamesJson)
+    print(fileNames)
+    fileNamesJson = json.dumps(fileNames)
+    print(fileNamesJson)
 
     names = {
-            "--source_bucket": os.environ["SourceBucketname"],
-            "--destination_bucket": os.environ["DestinationBucketname"],
-            "--files": FilenamesJson,
+            "--source_bucket": os.environ["sourceBucketname"],
+            "--destination_bucket": os.environ["destinationBucketname"],
+            "--files": fileNamesJson,
     }
     try:
-        response = glue.start_job_run(JobName=glue_job_name, Arguments=names)
+        response = glue.start_job_run(JobName=glueJobName, Arguments=names)
         print(response)
-        StatusCode = response["ResponseMetadata"]["HTTPStatusCode"]
-        if StatusCode == 200:
+        statusCode = response["ResponseMetadata"]["HTTPStatusCode"]
+        if statusCode == 200:
             return {
-                'statusCode': StatusCode,
+                'statusCode': statusCode,
                 'body': 'Glue job started successfully',
             }
+        else:
+            print("Failed to start gluejob")
+
     except Exception as e:
         return {
             'statusCode': 500,
