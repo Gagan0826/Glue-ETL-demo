@@ -1,0 +1,2 @@
+def displayFunctionC():
+    print("C")

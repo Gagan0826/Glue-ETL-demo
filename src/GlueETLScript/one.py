@@ -1,0 +1,2 @@
+def displayFunctionA():
+    print("A")

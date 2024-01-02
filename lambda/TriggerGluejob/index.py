@@ -6,7 +6,7 @@ glue = boto3.client('glue')
 s3 = boto3.client('s3')
 
 def handler(event, context):
-    glueJobName = os.environ['glueJobname']+"new"
+    glueJobName = os.environ['glueJobname']
     fileNames = []
 
     for record in event["Records"]:
@@ -17,12 +17,13 @@ def handler(event, context):
     print(fileNamesJson)
 
     names = {
-            "--source_bucket": os.environ["sourceBucketname"],
-            "--destination_bucket": os.environ["destinationBucketname"],
+            "--sourceBucket": os.environ["sourceBucketname"],
+            "--destinationBucket": os.environ["destinationBucketname"],
             "--files": fileNamesJson,
+            
     }
     try:
-        response = glue.start_job_run(JobName=glueJobName, Arguments=names)
+        response = glue.start_job_run(JobName=glueJobName,Arguments=names)                                     
         print(response)
         statusCode = response["ResponseMetadata"]["HTTPStatusCode"]
         if statusCode == 200:

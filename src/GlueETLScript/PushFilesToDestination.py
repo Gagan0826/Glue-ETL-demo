@@ -1,13 +1,22 @@
 import sys
-import boto3
-import os
 from awsglue.utils import getResolvedOptions
+import importlib
+from one import displayFunctionA
+from two import displayFunctionB
+from three import displayFunctionC
 import json
+import boto3
 
-args = getResolvedOptions(sys.argv, ["source_bucket", "destination_bucket", "files"])
+print("main")
+displayFunctionA()
+displayFunctionB()
+displayFunctionC()
 
-SourceBucket = args['source_bucket']
-DestinationBucket = args['destination_bucket']
+
+args = getResolvedOptions(sys.argv, ["sourceBucket", "destinationBucket", "files"])
+
+SourceBucket = args['sourceBucket']
+DestinationBucket = args['destinationBucket']
 filenames = json.loads(args["files"])
 
 s3 = boto3.client('s3')
