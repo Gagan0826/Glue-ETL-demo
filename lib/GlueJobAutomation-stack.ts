@@ -44,6 +44,7 @@ export class glueJobAutomation extends cdk.Stack {
         sourceBucketname: `${props?.resources.environment}-${props?.resources.sourceBucketName}`,
         destinationBucketname: `${props?.resources.environment}-${props?.resources.destinationBucketName}`,
         glueJobname: `${props?.resources.environment}-${props?.resources.glueJobName}`,
+        ...props?.resources
       }
     });
 
@@ -81,7 +82,7 @@ export class glueJobAutomation extends cdk.Stack {
       executionProperty: {
         maxConcurrentRuns: 10,
      },
-     defaultArguments:{'--extra-py-files': `${props?.resources.pyFiles}`},
+     defaultArguments:{'--extra-py-files': `${props?.scriptLocation.location}`},
     });
 
 

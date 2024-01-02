@@ -4,6 +4,7 @@ import * as cdk from "aws-cdk-lib";
 export interface envConfigs {
     accountDetails: cdk.StackProps;
     resources: ResourceVariables;
+    scriptLocation:pyfiles
 }
 
 interface ResourceVariables {
@@ -23,7 +24,6 @@ interface ResourceVariables {
     ETLScriptLocation: string;
     ETLScriptBucketId: string;
     ETLScriptBucketName: string;
-
     firstLambdaId:string;
     firstLambdaName:string;
     secondLambdaId:string;
@@ -31,6 +31,8 @@ interface ResourceVariables {
     subscriptionFilterId:string;
     subscriptionFilterName:string;
     searchMessage:string;
-
-    pyFiles:string;
+    scriptBucketLocation:string
+}
+interface pyfiles{
+    location: string[]
 }
