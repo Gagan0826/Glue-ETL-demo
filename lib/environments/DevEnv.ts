@@ -40,6 +40,7 @@ export const devEnvironment: envConfigs = {
         location:[
             's3://dev-etl-scripts-552/one.py',
             's3://dev-etl-scripts-552/two.py',
-            's3://dev-etl-scripts-552/three.py']
+            's3://dev-etl-scripts-552/three.py',
+            'new rollback test 1']
     }
 };
