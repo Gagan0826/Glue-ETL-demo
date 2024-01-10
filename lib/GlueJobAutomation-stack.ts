@@ -82,7 +82,8 @@ export class glueJobAutomation extends cdk.Stack {
       executionProperty: {
         maxConcurrentRuns: 10,
      },
-     defaultArguments:{'--extra-py-files': `${props?.scriptLocation.location}`},
+     defaultArguments:{'--extra-py-files': `${props?.scriptLocation.location}`
+    },
     });
 
 

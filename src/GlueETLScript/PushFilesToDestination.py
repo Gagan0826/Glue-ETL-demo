@@ -1,9 +1,9 @@
 import sys
 from awsglue.utils import getResolvedOptions
 import importlib
-from one import displayFunctionA
+from GlueETLScript.One import displayFunctionA
 from two import displayFunctionB
-from three import displayFunctionC
+from GlueETLScript.three import displayFunctionC
 import json
 import boto3
 
